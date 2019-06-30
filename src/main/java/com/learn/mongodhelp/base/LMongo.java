@@ -1,7 +1,8 @@
 package com.learn.mongodhelp.base;
 
+import com.learn.mongodhelp.utils.SpringUtil;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
 
@@ -12,29 +13,35 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Data
-public class LMongo<T> {
+public class LMongo {
 
-    @Autowired
-    private MongoQuery<T> mq;
 
-    public boolean save(T t) {
-        this.mq.getMongoTemplate().save(t);
+    private static MongoQuery getMq() {
+        var mq = new MongoQuery();
+        mq.setMongoTemplate((MongoTemplate) SpringUtil.getBean("mongoTemplate"));
+        return mq;
+    }
+
+    public static  <T> boolean save(T t) {
+        getMq().getMongoTemplate().save(t);
         return true;
     }
 
-    public Long delete(T t) {
-        var result =  this.mq.getMongoTemplate().remove(t);
+    public static  <T>  Long delete(T t) {
+        var result =  getMq().getMongoTemplate().remove(t);
         return result.getDeletedCount();
     }
 
-    public SelectQuery find(Class<T> tClass) {
-        this.mq.setTClass(tClass);
-        return new SelectQuery(this.mq);
+    public static synchronized  <T> SelectQuery find(Class<T> tClass) {
+        var mq = getMq();
+        mq.setTClass(tClass);
+        return new SelectQuery(mq);
     }
 
-    public LMongo delete(Class<T> tClass) {
-        this.mq.setTClass(tClass);
-        return this;
+    public static synchronized <T> DeleteQuery delete(Class<T> tClass) {
+        var mq = getMq();
+        mq.setTClass(tClass);
+        return new DeleteQuery(mq);
     }
 
 

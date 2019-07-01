@@ -1,3 +1,9 @@
 .idea
 target/classes
 *.class
+*.jar
+*.properties
+*.lst
+*.dumpstream
+com.learn.mongod.MongodHelpApplicationTests.txt
+TEST-com.learn.mongod.MongodHelpApplicationTests.xml

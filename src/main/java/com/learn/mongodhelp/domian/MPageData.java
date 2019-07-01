@@ -16,7 +16,7 @@ import java.util.*;
  * 修改时间：2018-1-4
  * @version
  */
-public class PageData extends HashMap implements Map {
+public class MPageData extends HashMap implements Map {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class PageData extends HashMap implements Map {
 
 	Map map = null;
 	ServerHttpRequest request;
-	public PageData(ServerHttpRequest request){
+	public MPageData(ServerHttpRequest request){
 		this.request = request;
 		Map properties = request.getQueryParams();
 		Map returnMap = new HashMap();
@@ -79,20 +79,20 @@ public class PageData extends HashMap implements Map {
 
 	}
 
-	public PageData() {
+	public MPageData() {
 		map = new HashMap();
 	}
-	public PageData(String name, Object value) {
+	public MPageData(String name, Object value) {
 		this.map = new HashMap();
 		this.map.put(name, value);
 	}
 
-	public PageData add(String name, Object value) {
+	public MPageData add(String name, Object value) {
 		this.map.put(name,value);
 		return this;
 	}
 
-	public PageData(Map<String, Object> map) {
+	public MPageData(Map<String, Object> map) {
 		this.map = map;
 	}
 

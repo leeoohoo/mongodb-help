@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
  * @param <T>
  */
 @Component
-@Data
 public class LMongo {
 
 
@@ -25,6 +24,12 @@ public class LMongo {
     public static  <T> boolean save(T t) {
         getMq().getMongoTemplate().save(t);
         return true;
+    }
+
+    public static <T> UpdateQuery update(Class<T> tClass) {
+        var mq = getMq();
+        mq.setTClass(tClass);
+        return new UpdateQuery(mq);
     }
 
     public static  <T>  Long delete(T t) {

@@ -8,22 +8,25 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 
 @Data
 public class MongoQuery<T> {
     private MongoTemplate mongoTemplate;
 
-    private QueryBuilder queryBuilder;
+    private QueryBuilder queryBuilder = new QueryBuilder();
 
-    private Pageable pageable;
+    private Pageable pageable ;
 
     private Sort sort;
 
     private Query query;
 
-    private BasicDBObject fieldsObject;
+    private BasicDBObject fieldsObject = new BasicDBObject();
 
     private Class<T> tClass;
 
     private PageData pageData;
+
+    private Update update = new Update();
 }

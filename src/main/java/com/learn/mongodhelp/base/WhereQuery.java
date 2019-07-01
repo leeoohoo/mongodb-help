@@ -2,6 +2,7 @@ package com.learn.mongodhelp.base;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.mongodb.core.query.BasicQuery;
@@ -20,13 +21,18 @@ public class WhereQuery<T>{
 
     public Long delete() {
         this.where();
-        if(null == this.mq.getTClass() || null == this.mq.getQueryBuilder() || null == this.mq.getQuery()) {
-            throw new RuntimeException("没有删除条件");
-        }
+        initQuery();
         DeleteResult remove = this.mq.getMongoTemplate().remove(this.mq.getQuery(), this.mq.getTClass());
         return remove.getDeletedCount();
     }
 
+    private void initQuery () {
+        if(null == this.mq.getTClass() || null == this.mq.getQueryBuilder()) {
+            throw new RuntimeException("缺少条件");
+        }else {
+            this.mq.setQuery(new BasicQuery(this.mq.getQueryBuilder().get().toString()));
+        }
+    }
 
 
     public List<T> findList() {
@@ -52,6 +58,40 @@ public class WhereQuery<T>{
         this.initSelect();
         this.mq.setQuery(new BasicQuery(this.mq.getQueryBuilder().get().toString(), this.mq.getFieldsObject().toJson()));
         return this.mq.getMongoTemplate().findOne(this.mq.getQuery(), this.mq.getTClass());
+    }
+
+
+    /**
+     * updateFirst 更新查询返回结果集的第一条
+     * @return 修改条数
+     */
+    public Long updateFirst () {
+        this.where();
+        initQuery();
+        UpdateResult updateResult = this.mq.getMongoTemplate().updateFirst(this.mq.getQuery(), this.mq.getUpdate(), this.mq.getTClass());
+        return updateResult.getModifiedCount();
+    }
+
+    /**
+     * updateMulti 更新查询返回结果集的全部
+     * @return 修改条数
+     */
+    public Long updateMulti () {
+        this.where();
+        initQuery();
+        UpdateResult updateResult = this.mq.getMongoTemplate().updateMulti(this.mq.getQuery(), this.mq.getUpdate(), this.mq.getTClass());
+        return updateResult.getModifiedCount();
+    }
+
+    /**
+     * upsert 更新对象不存在则去添加
+     * @return 修改条数
+     */
+    public Long upsert () {
+        this.where();
+        initQuery();
+        UpdateResult updateResult = this.mq.getMongoTemplate().upsert(this.mq.getQuery(), this.mq.getUpdate(), this.mq.getTClass());
+        return updateResult.getModifiedCount();
     }
 
     private void initSelect() {

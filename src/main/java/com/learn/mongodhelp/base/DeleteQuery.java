@@ -1,7 +1,7 @@
 package com.learn.mongodhelp.base;
 
 
-import com.learn.mongodhelp.domian.PageData;
+import com.learn.mongodhelp.domian.MPageData;
 
 public class DeleteQuery<T> {
 
@@ -16,7 +16,7 @@ public class DeleteQuery<T> {
         return new WhereQuery(this.mq);
     }
 
-    public WhereQuery where(PageData pageData) {
+    public WhereQuery where(MPageData pageData) {
         this.mq.setPageData(pageData);
         return new WhereQuery(this.mq);
     }

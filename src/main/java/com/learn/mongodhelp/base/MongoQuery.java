@@ -1,6 +1,6 @@
 package com.learn.mongodhelp.base;
 
-import com.learn.mongodhelp.domian.PageData;
+import com.learn.mongodhelp.domian.MPageData;
 import com.mongodb.BasicDBObject;
 import com.mongodb.QueryBuilder;
 import lombok.Data;
@@ -26,7 +26,7 @@ public class MongoQuery<T> {
 
     private Class<T> tClass;
 
-    private PageData pageData;
+    private MPageData pageData;
 
     private Update update = new Update();
 }

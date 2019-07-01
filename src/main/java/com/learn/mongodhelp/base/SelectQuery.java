@@ -1,6 +1,6 @@
 package com.learn.mongodhelp.base;
 
-import com.learn.mongodhelp.domian.PageData;
+import com.learn.mongodhelp.domian.MPageData;
 import lombok.Data;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -30,7 +30,7 @@ public class SelectQuery {
         return this;
     }
 
-    public SelectQuery page(PageData pageData) {
+    public SelectQuery page(MPageData pageData) {
         this.mq.setPageData(pageData);
         if (null != this.mq.getSort()) {
             this.mq.setPageable(
@@ -67,7 +67,7 @@ public class SelectQuery {
 
 
 
-    public WhereQuery where(PageData pageData) {
+    public WhereQuery where(MPageData pageData) {
         this.mq.setPageData(pageData);
         return new WhereQuery(this.mq);
     }

@@ -20,9 +20,9 @@ public class LMongo {
         return mq;
     }
 
-    public static  <T> boolean save(T t) {
-        getMq().getMongoTemplate().save(t);
-        return true;
+    public static  <T> T save(T t) {
+        var result = getMq().getMongoTemplate().save(t);
+        return result;
     }
 
     public static <T> UpdateQuery update(Class<T> tClass) {

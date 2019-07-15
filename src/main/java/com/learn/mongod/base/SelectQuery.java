@@ -12,6 +12,13 @@ public class SelectQuery {
 
     private MongoQuery mq;
 
+    private MongoQuery getMq() {
+        return this.mq;
+    }
+
+    private void setMq(MongoQuery mq) {
+        this.mq = mq;
+    }
     public SelectQuery(MongoQuery mongoQuery) {
         this.mq = mongoQuery;
     }

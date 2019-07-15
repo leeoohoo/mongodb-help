@@ -1,9 +1,10 @@
-package com.learn.mongodhelp.service;
+package com.learn.mongod.service;
 
-import com.learn.mongodhelp.base.LMongo;
-import com.learn.mongodhelp.domian.PageData;
-import com.learn.mongodhelp.entity.Role;
-import com.learn.mongodhelp.entity.User;
+import com.learn.mongod.base.LMongo;
+import com.learn.mongod.domian.MPageData;
+import com.learn.mongod.entity.Role;
+import com.learn.mongod.entity.User;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -73,10 +74,19 @@ public class TestService {
         Object user = LMongo
                 .find(User.class)
                 .select("roles")
-                .where(new PageData())
+                .where(new MPageData())
                 .eq("id", 1L)
                 .findList();
         return user;
+    }
+
+
+    public Page findPage() {
+        Page page = LMongo.find(User.class)
+                .select("id,name")
+                .where(new MPageData())
+                .findPage();
+        return page;
     }
 
 

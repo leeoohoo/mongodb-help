@@ -1,4 +1,4 @@
-package com.learn.mongodhelp.entity;
+package com.learn.mongod.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

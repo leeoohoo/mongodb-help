@@ -1,4 +1,4 @@
-package com.learn.mongodhelp.entity;
+package com.learn.mongod.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,6 @@ import java.util.List;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class User {
     private Long id;
 
@@ -24,6 +23,13 @@ public class User {
 
     private List<Role> roles;
 
+    public User(){
+
+    }
+
     public User(long l, String ddd, int i) {
+        this.id = l;
+        this.name = ddd;
+        this.age = i;
     }
 }

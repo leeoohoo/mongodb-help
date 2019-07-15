@@ -1,6 +1,6 @@
-package com.learn.mongodhelp.controller;
+package com.learn.mongod.controller;
 
-import com.learn.mongodhelp.service.TestService;
+import com.learn.mongod.service.TestService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +43,12 @@ public class TestContraller {
     @GetMapping("find")
     public Object find() {
         Object result = testService.find();
+        return result;
+    }
+
+    @GetMapping("find_page")
+    public Object findPage() {
+        Object result = testService.findPage();
         return result;
     }
 }

@@ -43,16 +43,16 @@ public class SelectQuery {
             this.mq.setPageable(
                     PageRequest.of(
                             this.mq.getPageData().getPageIndex(),
-                            this.mq.getPageData().getMaxRows(),
+                            this.mq.getPageData().getRows(),
                             this.mq.getSort()
                     )
             );
         } else {
             this.mq.setPageable(
                     PageRequest.of(
-                    this.mq.getPageData().getPageIndex(),
-                    this.mq.getPageData().getMaxRows()
-                    )
+                            this.mq.getPageData().getPageIndex(),
+                            this.mq.getPageData().getRows()
+                            )
             );
         }
         return this;

@@ -83,6 +83,7 @@ public class TestService {
 
     public Page findPage() {
         Page page = LMongo.find(User.class)
+                .page(new MPageData())
                 .select("id,name")
                 .where(new MPageData())
                 .findPage();

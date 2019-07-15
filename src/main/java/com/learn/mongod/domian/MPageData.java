@@ -81,6 +81,7 @@ public class MPageData extends HashMap implements Map {
 
 	public MPageData() {
 		map = new HashMap();
+		this.setMaxRows((this.GetParameterInt("pageIndex"))*this.rows);
 	}
 	public MPageData(String name, Object value) {
 		this.map = new HashMap();

@@ -3,4 +3,4 @@ spring:
     mongodb:
       port: 27017
       host: localhost
-      database: test1
+      database: test

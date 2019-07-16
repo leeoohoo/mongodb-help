@@ -81,13 +81,14 @@ public class TestService {
     }
 
 
-    public Page findPage() {
+    public Page findPage(MPageData pageData) {
         Page page = LMongo.find(User.class)
-                .page(new MPageData())
+                .page(pageData)
                 .select("id,name")
                 .where(new MPageData())
                 .findPage();
         return page;
+
     }
 
 

@@ -47,7 +47,8 @@ public class WhereQuery<T>{
         if (null == this.mq.getPageable()) {
             throw new RuntimeException("请先设置分页");
         }
-        var list = findList();
+        this.mq.setQuery(new BasicQuery(this.mq.getQueryBuilder().get().toString(), this.mq.getFieldsObject().toJson()));
+        var list = this.mq.getMongoTemplate().find(this.mq.getQuery().with(this.mq.getPageable()),this.mq.getTClass());
         long total = this.mq.getMongoTemplate().count(this.mq.getQuery(), this.mq.getTClass());
         Page<T> page = new PageImpl<>(list, this.mq.getPageable(), total);
         return page;

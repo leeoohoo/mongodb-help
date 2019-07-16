@@ -1,9 +1,16 @@
 package com.learn.mongod.controller;
 
+import com.learn.mongod.domian.MPageData;
 import com.learn.mongod.service.TestService;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.server.reactive.SslInfo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+
 
 /**
  * 测试控制层
@@ -47,8 +54,18 @@ public class TestContraller {
     }
 
     @GetMapping("find_page")
-    public Object findPage() {
-        Object result = testService.findPage();
+    public Object findPage(ServerHttpRequest request) throws Exception {
+        InetSocketAddress remoteAddress = request.getRemoteAddress();
+        SslInfo sslInfo = request.getSslInfo();
+        String hostName = remoteAddress.getHostName();
+        InetAddress address = remoteAddress.getAddress();
+        String hostString = remoteAddress.getHostString();
+
+        Object result = testService.findPage(new MPageData(request));
         return result;
     }
+
+
+
+
 }

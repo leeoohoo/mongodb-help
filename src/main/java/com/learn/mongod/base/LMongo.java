@@ -1,8 +1,11 @@
 package com.learn.mongod.base;
 
 import com.learn.mongod.utils.SpringUtil;
+import com.mongodb.BasicDBObject;
+import com.mongodb.QueryBuilder;
 import lombok.Data;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Update;
 
 import java.util.List;
 
@@ -18,6 +21,9 @@ public class LMongo {
 
     private static MongoQuery getMq() {
         var mq = new MongoQuery();
+        mq.setQueryBuilder(new QueryBuilder());
+        mq.setFieldsObject(new BasicDBObject());
+        mq.setUpdate(new Update());
         mq.setMongoTemplate((MongoTemplate) SpringUtil.getBean("mongoTemplate"));
         return mq;
     }
@@ -28,8 +34,9 @@ public class LMongo {
     }
 
     public static <T> boolean save(List<T> ts) {
+        MongoTemplate mongoTemplate = getMq().getMongoTemplate();
         ts.forEach(
-               t -> getMq().getMongoTemplate().save(t)
+               t -> mongoTemplate.save(t)
         );
         return true;
     }

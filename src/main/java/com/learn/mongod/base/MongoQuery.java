@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.query.Update;
 public class MongoQuery<T> {
     private MongoTemplate mongoTemplate;
 
-    private QueryBuilder queryBuilder = new QueryBuilder();
+    private QueryBuilder queryBuilder;
 
     private Pageable pageable ;
 
@@ -22,11 +22,11 @@ public class MongoQuery<T> {
 
     private Query query;
 
-    private BasicDBObject fieldsObject = new BasicDBObject();
+    private BasicDBObject fieldsObject ;
 
     private Class<T> tClass;
 
     private MPageData pageData;
 
-    private Update update = new Update();
+    private Update update ;
 }

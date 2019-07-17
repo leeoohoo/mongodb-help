@@ -2,12 +2,14 @@ package com.learn.mongod.service;
 
 import com.learn.mongod.base.LMongo;
 import com.learn.mongod.domian.MPageData;
+import com.learn.mongod.entity.MyOrganization;
 import com.learn.mongod.entity.Role;
 import com.learn.mongod.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -89,6 +91,17 @@ public class TestService {
                 .findPage();
         return page;
 
+    }
+
+    public Object findOrgan() {
+        long start = new Date().getTime();
+        List list = LMongo.find(MyOrganization.class)
+                .select("id")
+                .where()
+                .findList();
+        System.out.println(list.size());
+        System.out.println(new Date().getTime()-start);
+        return list;
     }
 
 

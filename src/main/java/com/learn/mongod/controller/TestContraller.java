@@ -67,5 +67,11 @@ public class TestContraller {
 
 
 
+    @GetMapping("find_organ")
+    public Object findOrgan() {
+        Object result = testService.findOrgan();
+        return result;
+    }
+
 
 }

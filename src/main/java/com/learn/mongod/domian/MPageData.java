@@ -22,7 +22,7 @@ public class MPageData extends HashMap implements Map {
 
 	private Integer rows =10;
 	private Integer pageIndex = 0;
-	private Integer maxRows=0;
+	private Integer maxRows=(this.pageIndex-1) * this.rows;
 
 
 	Map map = null;
@@ -73,8 +73,9 @@ public class MPageData extends HashMap implements Map {
 		}
 		if (this.containsKey("pageIndex")&&!"".equals((String)map.get("pageIndex"))) {
 //			this.setPageIndex(this.rows);
-			this.setPageIndex(this.GetParameterInt("pageIndex"));		//当前页
-			this.setMaxRows((this.GetParameterInt("pageIndex")-1)*this.rows);		//起始行（但不包括第一行）
+			var pageIndex = this.GetParameterInt("pageIndex")-1;
+			this.setPageIndex(pageIndex*this.rows);		//当前页
+			this.setMaxRows(this.rows);		//起始行（但不包括第一行）
 		}
 
 	}

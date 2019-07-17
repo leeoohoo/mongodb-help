@@ -4,6 +4,8 @@ import com.learn.mongod.utils.SpringUtil;
 import lombok.Data;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
+import java.util.List;
+
 
 /**
  * mongodb 的工具类
@@ -22,6 +24,13 @@ public class LMongo {
 
     public static <T> boolean save(T t) {
         getMq().getMongoTemplate().save(t);
+        return true;
+    }
+
+    public static <T> boolean save(List<T> ts) {
+        ts.forEach(
+               t -> getMq().getMongoTemplate().save(t)
+        );
         return true;
     }
 

@@ -22,7 +22,7 @@ public class MPageData extends HashMap implements Map {
 
 	private Integer rows =10;
 	private Integer pageIndex = 0;
-	private Integer maxRows=(this.pageIndex-1) * this.rows;
+	private Integer firstRows=(this.pageIndex-1) * this.rows;
 
 
 	Map map = null;
@@ -73,16 +73,19 @@ public class MPageData extends HashMap implements Map {
 		}
 		if (this.containsKey("pageIndex")&&!"".equals((String)map.get("pageIndex"))) {
 //			this.setPageIndex(this.rows);
-			var pageIndex = this.GetParameterInt("pageIndex")-1;
-			this.setPageIndex(pageIndex*this.rows);		//当前页
-			this.setMaxRows(this.rows);		//起始行（但不包括第一行）
+			var pageIndex = this.GetParameterInt("pageIndex");
+			if(pageIndex <= 0) {
+				pageIndex = 1;
+			}
+			this.setPageIndex(pageIndex-1);		//当前页
+			this.setFirstRows((this.pageIndex-1) * this.rows);		//起始行（但不包括第一行）
 		}
 
 	}
 
 	public MPageData() {
 		map = new HashMap();
-		this.setMaxRows((this.GetParameterInt("pageIndex"))*this.rows);
+		this.setFirstRows((this.GetParameterInt("pageIndex")-1)*this.rows);
 	}
 	public MPageData(String name, Object value) {
 		this.map = new HashMap();
@@ -223,11 +226,11 @@ public class MPageData extends HashMap implements Map {
 		this.pageIndex = pageIndex;
 	}
 
-	public Integer getMaxRows() {
-		return maxRows;
+	public Integer getFirstRows() {
+		return this.firstRows;
 	}
 
-	public void setMaxRows(Integer maxRows) {
-		this.maxRows = maxRows;
+	public void setFirstRows(Integer maxRows) {
+		this.firstRows = maxRows;
 	}
 }

@@ -1,6 +1,7 @@
 package com.learn.mongod.base;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.QueryBuilder;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import org.springframework.data.domain.Page;

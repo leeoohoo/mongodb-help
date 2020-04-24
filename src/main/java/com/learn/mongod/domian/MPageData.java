@@ -41,7 +41,7 @@ public class MPageData extends HashMap implements Map {
 			if ("Param".equals(name)) {
 				String[] valuess = (String[]) entry.getValue();
 
-				for (var v : valuess) {
+				for (String v : valuess) {
 					Map mapType = JSON.parseObject(v, Map.class);
 					for (Object obj : mapType.keySet()) {
 						String str = EscapeToolBox.unescape((String) mapType.get(obj));
@@ -73,7 +73,7 @@ public class MPageData extends HashMap implements Map {
 		}
 		if (this.containsKey("pageIndex")&&!"".equals((String)map.get("pageIndex"))) {
 //			this.setPageIndex(this.rows);
-			var pageIndex = this.GetParameterInt("pageIndex");
+			int pageIndex = this.GetParameterInt("pageIndex");
 			if(pageIndex <= 0) {
 				pageIndex = 1;
 			}

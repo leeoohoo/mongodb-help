@@ -4,13 +4,16 @@
  * @Author: leeoohoo
  * @Date: 2020-04-24 16:27:35
  * @LastEditors: leeoohoo
- * @LastEditTime: 2020-04-24 16:28:47
+ * @LastEditTime: 2020-04-24 16:47:05
  */
 package com.learn.mongod.base;
 
 import com.learn.mongod.utils.SpringUtil;
 import com.mongodb.BasicDBObject;
 import com.mongodb.QueryBuilder;
+import com.mongodb.bulk.DeleteRequest;
+import com.mongodb.client.result.DeleteResult;
+
 import lombok.Data;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Update;
@@ -50,24 +53,24 @@ public class LMongo {
     }
 
     public static <T> UpdateQuery update(Class<T> tClass) {
-        var mq = getMq();
+        MongoQuery mq = getMq();
         mq.setTClass(tClass);
         return new UpdateQuery(mq);
     }
 
     public static  <T>  Long delete(T t) {
-        var result =  getMq().getMongoTemplate().remove(t);
+        DeleteResult result =  getMq().getMongoTemplate().remove(t);
         return result.getDeletedCount();
     }
 
     public static synchronized  <T> SelectQuery find(Class<T> tClass) {
-        var mq = getMq();
+        MongoQuery mq = getMq();
         mq.setTClass(tClass);
         return new SelectQuery(mq);
     }
 
     public static synchronized <T> DeleteQuery delete(Class<T> tClass) {
-        var mq = getMq();
+        MongoQuery mq = getMq();
         mq.setTClass(tClass);
         return new DeleteQuery(mq);
     }

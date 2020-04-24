@@ -1,7 +1,6 @@
 package com.learn.mongod.base;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.QueryBuilder;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import org.springframework.data.domain.Page;
@@ -49,7 +48,7 @@ public class WhereQuery<T>{
             throw new RuntimeException("请先设置分页");
         }
         this.mq.setQuery(new BasicQuery(this.mq.getQueryBuilder().get().toString(), this.mq.getFieldsObject().toJson()));
-        var list = this.mq.getMongoTemplate().find(this.mq.getQuery().with(this.mq.getPageable()),this.mq.getTClass());
+        List<T> list = this.mq.getMongoTemplate().find(this.mq.getQuery().with(this.mq.getPageable()),this.mq.getTClass());
         long total = this.mq.getMongoTemplate().count(this.mq.getQuery(), this.mq.getTClass());
         Page<T> page = new PageImpl<>(list, this.mq.getPageable(), total);
         return page;
@@ -156,11 +155,11 @@ public class WhereQuery<T>{
         }
         this.mq.getPageData().getMap().forEach(
                 (k, v) -> {
-                    var stes = k.split("_");
+                    String[] stes = k.split("_");
                     if (stes.length > 1) {
                         switch (stes[1]) {
                             case "like":
-                                var value = v.toString();
+                                String value = v.toString();
                                 if (value != null && !"".equals(value.trim())) {
                                     this.like(stes[0], value);
                                 }
@@ -192,7 +191,7 @@ public class WhereQuery<T>{
                                 break;
                             case "in":
                                 if (v != null) {
-                                    var list = (List) v;
+                                    List<Object> list = (List) v;
                                     if (list.size() > 0) {
                                         this.in(stes[0],list);
                                     }
@@ -201,7 +200,7 @@ public class WhereQuery<T>{
                                 break;
                             case "notIn":
                                 if (v != null) {
-                                    var list = (List) v;
+                                    List<Object> list = (List) v;
                                     if (list.size() > 0) {
                                         this.notIn(stes[0],list);
                                     }

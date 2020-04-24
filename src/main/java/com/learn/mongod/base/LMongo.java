@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @version: 
+ * @Author: leeoohoo
+ * @Date: 2020-04-24 16:27:35
+ * @LastEditors: leeoohoo
+ * @LastEditTime: 2020-04-24 16:28:47
+ */
 package com.learn.mongod.base;
 
 import com.learn.mongod.utils.SpringUtil;
@@ -20,7 +28,7 @@ public class LMongo {
 
 
     private static MongoQuery getMq() {
-        var mq = new MongoQuery();
+        MongoQuery mq = new MongoQuery();
         mq.setQueryBuilder(new QueryBuilder());
         mq.setFieldsObject(new BasicDBObject());
         mq.setUpdate(new Update());

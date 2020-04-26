@@ -133,12 +133,12 @@ public class WhereQuery<T>{
         return this;
     }
 
-    public WhereQuery<T> in(String key, List<Object> o) {
+    public WhereQuery<T> in(String key, List<?> o) {
         this.mq.getQueryBuilder().and(key).in(o);
         return this;
     }
 
-    public WhereQuery<T> notIn(String key, List<Object> o) {
+    public WhereQuery<T> notIn(String key, List<?> o) {
         this.mq.getQueryBuilder().and(key).notIn(o);
         return this;
     }

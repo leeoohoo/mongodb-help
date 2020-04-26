@@ -1,13 +1,16 @@
+/*
+ * @Description: 
+ * @version: 
+ * @Author: leeoohoo
+ * @Date: 2020-04-24 16:27:35
+ * @LastEditors: leeoohoo
+ * @LastEditTime: 2020-04-26 10:24:42
+ */
 package com.learn.mongod.utils;
 
 import org.springframework.context.ApplicationContext;
 
-/**
- * TODO
- * email leeoohoo@gmail.com
- * rocketmq
- * Created by lee on 2019-06-28.
- */
+
 public class SpringUtil {
     private static ApplicationContext context = null;
 

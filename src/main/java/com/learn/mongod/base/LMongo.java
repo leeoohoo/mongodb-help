@@ -4,14 +4,13 @@
  * @Author: leeoohoo
  * @Date: 2020-04-24 16:27:35
  * @LastEditors: leeoohoo
- * @LastEditTime: 2020-04-24 16:47:05
+ * @LastEditTime: 2020-04-26 10:20:43
  */
 package com.learn.mongod.base;
 
 import com.learn.mongod.utils.SpringUtil;
 import com.mongodb.BasicDBObject;
 import com.mongodb.QueryBuilder;
-import com.mongodb.bulk.DeleteRequest;
 import com.mongodb.client.result.DeleteResult;
 
 import lombok.Data;
@@ -26,12 +25,11 @@ import java.util.List;
  * leeoohoo@gmail.com
  */
 @Data
-@SuppressWarnings({"unused", "unchecked", "rawtypes", "null", "hiding"})
 public class LMongo {
 
 
-    private static MongoQuery getMq() {
-        MongoQuery mq = new MongoQuery();
+    private static <T> MongoQuery<T> getMq() {
+        MongoQuery<T> mq = new MongoQuery<T>();
         mq.setQueryBuilder(new QueryBuilder());
         mq.setFieldsObject(new BasicDBObject());
         mq.setUpdate(new Update());
@@ -52,10 +50,10 @@ public class LMongo {
         return true;
     }
 
-    public static <T> UpdateQuery update(Class<T> tClass) {
-        MongoQuery mq = getMq();
+    public static <T> UpdateQuery<T> update(Class<T> tClass) {
+        MongoQuery<T> mq = getMq();
         mq.setTClass(tClass);
-        return new UpdateQuery(mq);
+        return new UpdateQuery<T>(mq);
     }
 
     public static  <T>  Long delete(T t) {
@@ -63,16 +61,16 @@ public class LMongo {
         return result.getDeletedCount();
     }
 
-    public static synchronized  <T> SelectQuery find(Class<T> tClass) {
-        MongoQuery mq = getMq();
+    public static   <T> SelectQuery<T> find(Class<T> tClass) {
+        MongoQuery<T> mq = getMq();
         mq.setTClass(tClass);
-        return new SelectQuery(mq);
+        return new SelectQuery<T>(mq);
     }
 
-    public static synchronized <T> DeleteQuery delete(Class<T> tClass) {
-        MongoQuery mq = getMq();
+    public static  <T> DeleteQuery<T> delete(Class<T> tClass) {
+        MongoQuery<T> mq = getMq();
         mq.setTClass(tClass);
-        return new DeleteQuery(mq);
+        return new DeleteQuery<T>(mq);
     }
 
 

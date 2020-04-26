@@ -1,14 +1,17 @@
+/*
+ * @Description: 
+ * @version: 
+ * @Author: leeoohoo
+ * @Date: 2020-04-24 16:27:35
+ * @LastEditors: leeoohoo
+ * @LastEditTime: 2020-04-26 10:24:21
+ */
 package com.learn.mongod.entity;
 
 import lombok.Builder;
 import lombok.Data;
 
-/**
- * TODO
- * email leeoohoo@gmail.com
- * mongod-help
- * Created by lee on 2019-07-19.
- */
+
 @Data
 @Builder
 public class Test {

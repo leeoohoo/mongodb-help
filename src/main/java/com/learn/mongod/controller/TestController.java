@@ -8,6 +8,7 @@
  */
 package com.learn.mongod.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.learn.mongod.base.LMongo;
@@ -30,9 +31,11 @@ public class TestController {
     @GetMapping("test")
     public Object findPage(ServerHttpRequest request) {
         LMongo.save(Test.builder().age(1).name("dd").nickName("fff").id(System.currentTimeMillis()).build());
+        List<Long> list = new ArrayList<>();
         List<Test> tests = LMongo.find(Test.class)
                 .page(new MPageData(request))
                 .where(new MPageData(request))
+                .in("key", list)
                 .findList();
 
         MyQueryResult<Test> myQueryResult = LMongo.find(Test.class)

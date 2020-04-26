@@ -6,7 +6,7 @@
  * @LastEditors: leeoohoo
  * @LastEditTime: 2020-03-26 18:42:41
  */
-package com.leeoohoo.mybasicapi.exception;
+package com.learn.mongod.exception;
 
 /**
  * project name: my-basic-api

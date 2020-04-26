@@ -16,6 +16,9 @@ import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.util.*;
 
+import com.learn.mongod.exception.GetPropertyException;
+import com.learn.mongod.exception.SetPropertyException;
+
 @Slf4j
 public class ClassUtils {
 

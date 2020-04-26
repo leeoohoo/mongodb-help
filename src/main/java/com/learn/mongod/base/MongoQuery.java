@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @version: 
+ * @Author: leeoohoo
+ * @Date: 2020-04-24 16:27:35
+ * @LastEditors: leeoohoo
+ * @LastEditTime: 2020-04-26 15:29:27
+ */
 package com.learn.mongod.base;
 
 import com.learn.mongod.domian.MPageData;
@@ -29,4 +37,6 @@ public class MongoQuery<T> {
     private MPageData pageData;
 
     private Update update ;
+
+    private Class dto;
 }

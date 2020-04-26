@@ -4,7 +4,7 @@
  * @Author: leeoohoo
  * @Date: 2020-04-24 16:27:35
  * @LastEditors: leeoohoo
- * @LastEditTime: 2020-04-26 10:20:43
+ * @LastEditTime: 2020-04-26 15:34:55
  */
 package com.learn.mongod.base;
 
@@ -61,7 +61,7 @@ public class LMongo {
         return result.getDeletedCount();
     }
 
-    public static   <T> SelectQuery<T> find(Class<T> tClass) {
+    public static <T> SelectQuery<T> find(Class<T> tClass) {
         MongoQuery<T> mq = getMq();
         mq.setTClass(tClass);
         return new SelectQuery<T>(mq);

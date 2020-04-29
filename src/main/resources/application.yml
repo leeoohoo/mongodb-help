@@ -1,6 +1,6 @@
 spring:
   data:
     mongodb:
-      host: 47.103.39.207
+      host: 47.103.43.137
       port: 27017
-      database: onecard
+      database: byte_spring

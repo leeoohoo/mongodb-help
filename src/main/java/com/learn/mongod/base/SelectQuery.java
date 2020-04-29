@@ -4,7 +4,7 @@
  * @Author: leeoohoo
  * @Date: 2020-04-24 16:27:35
  * @LastEditors: leeoohoo
- * @LastEditTime: 2020-04-26 09:27:17
+ * @LastEditTime: 2020-04-29 16:33:09
  */
 package com.learn.mongod.base;
 
@@ -35,7 +35,7 @@ public class SelectQuery<T> {
         if (null != this.mq.getPageData()) {
             this.mq.setPageable(
                     PageRequest.of(
-                            this.mq.getPageData().getPageIndex(),
+                            this.mq.getPageData().getPageIndex()-1,
                             this.mq.getPageData().getRows(),
                             this.mq.getSort())
             );
@@ -48,7 +48,7 @@ public class SelectQuery<T> {
         if (null != this.mq.getSort()) {
             this.mq.setPageable(
                     PageRequest.of(
-                            this.mq.getPageData().getPageIndex(),
+                            this.mq.getPageData().getPageIndex()-1,
                             this.mq.getPageData().getRows(),
                             this.mq.getSort()
                     )
@@ -56,7 +56,7 @@ public class SelectQuery<T> {
         } else {
             this.mq.setPageable(
                     PageRequest.of(
-                            this.mq.getPageData().getPageIndex(),
+                            this.mq.getPageData().getPageIndex()-1,
                             this.mq.getPageData().getRows()
                             )
             );

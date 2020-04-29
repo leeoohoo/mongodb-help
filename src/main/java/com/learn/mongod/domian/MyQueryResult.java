@@ -4,7 +4,7 @@
  * @Author: leeoohoo
  * @Date: 2020-04-26 10:28:22
  * @LastEditors: leeoohoo
- * @LastEditTime: 2020-04-26 15:36:13
+ * @LastEditTime: 2020-04-29 16:35:58
  */
 package com.learn.mongod.domian;
 
@@ -30,7 +30,7 @@ public class MyQueryResult<T> {
         Integer pageIndex = mPageData.getPageIndex();
         Integer rows = mPageData.getRows();
         MyPager pager = MyPager.builder()
-            .pageCount(total/rows)
+            .pageCount(total/rows <= 0 ? 1 : total/rows)
             .recordCount(total)
             .pageNumber(pageIndex)
             .pageSize(rows)

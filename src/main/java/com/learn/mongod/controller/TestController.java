@@ -41,7 +41,7 @@ public class TestController {
         MyQueryResult<Test> myQueryResult = LMongo.find(Test.class)
         .page(new MPageData(request))
         .where(new MPageData(request))
-        .findPage();
+        .findPage(Test.class);
         return tests;
 
     }
